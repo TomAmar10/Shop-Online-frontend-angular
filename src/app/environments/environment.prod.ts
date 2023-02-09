@@ -1,4 +1,4 @@
-const url = 'https://backend-shop-online.onrender.com';
+const url = 'https://backend-shop-online.onrender.com/api';
 export const environment = {
   production: true,
   url,
