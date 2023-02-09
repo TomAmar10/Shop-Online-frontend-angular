@@ -1,0 +1,24 @@
+<div class="modal-popup">
+  <ng-container *ngIf="cart; else noCart">
+    <div class="modal-left-side">
+      <h5>{{ (item$ | async).name }}</h5>
+      <div class="input-area">
+        <button class="btn minus" (click)="minus()">-</button>
+        <input type="number" [(ngModel)]="amount" class="form-control" />
+        <button class="btn plus" (click)="plus()">+</button>
+      </div>
+      <div class="buttons-area">
+        <button class="btn btn-danger" (click)="close()">Cancel</button>
+        <button class="btn btn-primary save-btn" (click)="save()">Save</button>
+      </div>
+    </div>
+    <div class="vr"></div>
+    <img src="{{ (item$ | async).image }}" alt="product" />
+  </ng-container>
+  <ng-template #noCart>
+    <div class="choose-cart-modal">
+      <app-login-form></app-login-form>
+    </div>
+  </ng-template>
+</div>
+<div class="modal-bg" (click)="close()"></div>

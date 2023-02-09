@@ -1,0 +1,14 @@
+<div class="popup-background" (click)="close()"></div>
+<div class="order-popup">
+  <div *ngIf="isSucceeded$ | async; else wrong">
+    <h4>Ordered Successfully!</h4>
+    <span (click)="download()">Download order</span>
+  </div>
+  <ng-template #wrong>
+    <div>
+      <h4>Something went wrong</h4>
+      <span>Sorry, please try again later</span>
+    </div>
+  </ng-template>
+  <button class="btn btn-danger" (click)="close()">OK</button>
+</div>

@@ -1,0 +1,6 @@
+<div class="items-container container-fluid" *ngIf="(items$ | async).length">
+  <app-single-item
+    *ngFor="let item of items$ | async"
+    [item]="item"
+  ></app-single-item>
+</div>

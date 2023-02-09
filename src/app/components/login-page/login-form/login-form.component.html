@@ -1,0 +1,50 @@
+<form [formGroup]="loginForm" (ngSubmit)="login()">
+  <app-carts-list *ngIf="user; else guest" class="carts-area"></app-carts-list>
+  <ng-template #guest>
+    <h3>Login</h3>
+    <span class="error">{{ error }}</span>
+    <form [formGroup]="loginForm" (submit)="login()">
+      <div class="form-group mb-3">
+        <div>
+          <label for="email" class="form-label">Email</label>
+          <span
+            *ngIf="
+              loginForm.get('email').invalid && loginForm.get('email').touched
+            "
+            class="error"
+            >Email is not valid</span
+          >
+        </div>
+        <input
+          type="email"
+          id="email"
+          class="form-control"
+          formControlName="email"
+        />
+      </div>
+      <div class="form-group mb-3">
+        <div>
+          <label for="text" class="form-label">Password</label>
+          <span
+            *ngIf="
+              loginForm.get('password').invalid &&
+              loginForm.get('password').touched
+            "
+            class="error"
+            >Password is not valid</span
+          >
+        </div>
+        <input
+          type="password"
+          id="password"
+          class="form-control"
+          formControlName="password"
+        />
+      </div>
+      <button class="btn btn-primary mb-3 d-block">Login</button>
+      <span routerLink="/home/register" class="register-link"
+        >First time? Register here</span
+      >
+    </form>
+  </ng-template>
+</form>

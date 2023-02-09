@@ -1,0 +1,85 @@
+<div class="admin-page">
+  <h2>Admin Page</h2>
+  <div class="boxes-container">
+    <div class="box">
+      <h5>Users</h5>
+      <div *ngFor="let user of users; index as i" class="box-item">
+        <div>
+          <span>Name: </span>
+          <span>{{ user.first_name }} {{ user.last_name }}</span>
+        </div>
+        <div>
+          <span>ID: </span>
+          <span>{{ user.id_number }}</span>
+        </div>
+        <div>
+          <span>Email: </span>
+          <span>{{ user.email }}</span>
+        </div>
+        <div>
+          <span>Address: </span>
+          <span>{{ user.city }}, {{ user.street }}</span>
+        </div>
+        <hr *ngIf="i < users.length-1" />
+      </div>
+    </div>
+    <div class="box">
+      <h5>Carts</h5>
+      <div *ngFor="let cart of carts; index as i" class="box-item">
+        <div>
+          <span>User: </span>
+          <span>{{ cart.userId.first_name }} {{ cart.userId.last_name }}</span>
+        </div>
+        <div>
+          <span>Items: </span>
+          <span *ngIf="!cart.items.length; else itemsArea">No items</span>
+          <ng-template #itemsArea>
+            <div class="cart-items">
+              <span *ngFor="let item of cart.items; index as i">
+                {{ item.name }}
+                <div class="vr" *ngIf="i < cart.items.length - 1"></div
+              ></span>
+            </div>
+          </ng-template>
+        </div>
+        <div>
+          <span>Created: </span>
+          <span>{{ cart.created | date }}</span>
+        </div>
+        <div>
+          <span>Cart ID: </span>
+          <span>{{ cart._id }}</span>
+        </div>
+        <hr *ngIf="i < carts.length - 1" />
+      </div>
+    </div>
+    <div class="box">
+      <h5>Orders</h5>
+      <div *ngFor="let order of orders; index as i" class="box-item">
+        <div>
+          <span>User: </span>
+          <span
+            >{{ order.userId.first_name }} {{ order.userId.last_name }}</span
+          >
+        </div>
+        <div>
+          <span>Ordered: </span>
+          <span>{{ order.order_date | date }}</span>
+        </div>
+        <div>
+          <span>Delivery date: </span>
+          <span>{{ order.delivery | date }}</span>
+        </div>
+        <div>
+          <span>Total price: </span>
+          <span>{{ order.price }}₪</span>
+        </div>
+        <div>
+          <span>Cart: </span>
+          <span>{{ order.cartId._id }}</span>
+        </div>
+        <hr *ngIf="i < orders.length - 1" />
+      </div>
+    </div>
+  </div>
+</div>

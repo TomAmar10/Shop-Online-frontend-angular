@@ -1,0 +1,26 @@
+.details {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.cart-details{
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+}
+p {
+  font-size: 1.3rem;
+}
+.notification {
+  color: rgb(187, 38, 38);
+  text-align: center;
+}
+
+@media only screen and (max-width: 950px) {
+  p{
+    font-size: 0.9rem;
+  }
+  h3{
+    font-size: 1.3rem;
+  }
+}

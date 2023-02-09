@@ -1,0 +1,137 @@
+<form *ngIf="isFirst; else second" [formGroup]="register1">
+  <h3>Register - step 1</h3>
+  <div class="form-group">
+    <div class="label-container">
+      <label for="id" class="form-label">ID number</label>
+      <span class="err" *ngIf="checkValid1('id_number')">{{ min(8) }}</span>
+      <span class="err" *ngIf="idError">{{ idError }}</span>
+    </div>
+    <input
+      type="number"
+      id="id"
+      class="form-control"
+      formControlName="id_number"
+    />
+  </div>
+  <div class="form-group">
+    <div class="label-container">
+      <label for="email" class="form-label">Email</label>
+      <span class="err" *ngIf="checkValid1('email')">Email is not valid</span>
+    </div>
+    <input
+      type="email"
+      id="email"
+      class="form-control"
+      formControlName="email"
+    />
+  </div>
+  <div class="form-group">
+    <div class="label-container">
+      <label for="password" class="form-label">Password</label>
+      <span class="err" *ngIf="checkValid1('password')">{{ min(6) }}</span>
+    </div>
+    <input
+      type="password"
+      id="password"
+      class="form-control"
+      formControlName="password"
+    />
+  </div>
+  <div class="form-group">
+    <div class="label-container">
+      <label for="text" class="form-label">Confirm Password</label>
+      <span class="err" *ngIf="checkValid1('passConfirm')"
+        >Must be equal to password</span
+      >
+    </div>
+    <input
+      type="password"
+      id="password"
+      class="form-control"
+      formControlName="passConfirm"
+    />
+  </div>
+  <div class="next-step-btn">
+    <button type="button" class="btn btn-primary" (click)="next()">Next</button>
+  </div>
+  <a routerLink="../login">Have an account? Log in</a>
+</form>
+<!-- ----------------------- second form -->
+<ng-template #second>
+  <form [formGroup]="register2" (ngSubmit)="submit()">
+    <div class="top-area">
+      <h3>Register - step 2</h3>
+      <span class="back-btn" (click)="isFirst = true">Back</span>
+    </div>
+    <span class="err">{{ error }}</span>
+    <div class="form-group dropdown">
+      <div class="label-container">
+        <label for="city" class="form-label">City - עברית</label>
+        <span class="err" *ngIf="checkValid2('city')">City is not valid</span>
+      </div>
+      <input
+        #userCity
+        (input)="searchCity(userCity.value)"
+        type="text"
+        id="city"
+        class="form-control"
+        formControlName="city"
+      />
+      <div class="dropdown-content" [ngClass]="cities && isCityDirty && 'show'">
+        <a *ngFor="let city of cities" (click)="chooseCity(city)">{{ city }}</a>
+      </div>
+    </div>
+    <div class="form-group dropdown">
+      <div class="label-container">
+        <label for="street" class="form-label">Street - עברית</label>
+        <span class="err" *ngIf="checkValid2('street')"
+          >Street is not valid</span
+        >
+      </div>
+      <input
+        #userStreet
+        (input)="searchStreet(userStreet.value)"
+        type="text"
+        id="street"
+        class="form-control"
+        formControlName="street"
+      />
+      <div
+        class="dropdown-content"
+        [ngClass]="streets && isStreetDirty && 'show'"
+      >
+        <a *ngFor="let street of streets" (click)="chooseStreet(street)">{{
+          street
+        }}</a>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="label-container">
+        <label for="name" class="form-label">First Name</label>
+        <span class="err" *ngIf="checkValid2('first_name')">{{ min(2) }}</span>
+      </div>
+      <input
+        type="text"
+        id="name"
+        class="form-control"
+        formControlName="first_name"
+      />
+    </div>
+    <div class="form-group">
+      <div class="label-container">
+        <label for="lastName" class="form-label">Last Name</label>
+        <span class="err" *ngIf="checkValid2('last_name')">{{ min(2) }}</span>
+      </div>
+      <input
+        type="text"
+        id="lastName"
+        class="form-control"
+        formControlName="last_name"
+      />
+    </div>
+    <div>
+      <button type="submit" class="btn btn-primary">Register</button>
+    </div>
+    <a routerLink="../login">Have an account? Log in</a>
+  </form>
+</ng-template>

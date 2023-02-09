@@ -1,0 +1,45 @@
+<form [formGroup]="itemForm" (ngSubmit)="save()">
+  <h5>{{ isEditing ? "Edit" : "Add" }} Product</h5>
+  <div class="form-group mb-3">
+    <label for="name" class="form-label">Product Name</label>
+    <input type="text" id="name" class="form-control" formControlName="name" />
+  </div>
+  <div class="form-group mb-3">
+    <label for="price" class="form-label">Product Price</label>
+    <input
+      type="number"
+      id="price"
+      class="form-control"
+      formControlName="price"
+    />
+  </div>
+  <div class="form-group mb-3">
+    <label for="category" class="form-label">Category</label>
+    <select id="category" formControlName="categoryId" class="form-control">
+      <option value="1" disabled>choose category</option>
+      <option
+        *ngFor="let category of categories$ | async"
+        [value]="category._id"
+      >
+        {{ category.name }}
+      </option>
+    </select>
+  </div>
+  <div class="form-group mb-3">
+    <label for="image" class="form-label">Product Image</label>
+    <input
+      type="text"
+      id="image"
+      class="form-control"
+      formControlName="image"
+    />
+  </div>
+  <div>
+    <button type="submit" class="btn btn-success">
+      {{ isEditing ? "Save" : "Add" }}
+    </button>
+    <button type="button" class="btn btn-danger" (click)="cancel()">
+      Cancel
+    </button>
+  </div>
+</form>

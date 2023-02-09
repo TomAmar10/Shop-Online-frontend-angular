@@ -1,0 +1,25 @@
+  <div>
+    <div class="cart-top">
+      <div>
+        <span class="back-btn" routerLink="/shopping">Back To Shop</span>
+      </div>
+      <h4 class="">My Cart</h4>
+      <div></div>
+    </div>
+    <div class="search-container">
+      <input
+        type="text"
+        class="search-input"
+        placeholder="find product..."
+        #txt
+        (input)="searchItem(txt.value)"
+      />
+    </div>
+  </div>
+  <div class="cart-items">
+    <app-cart-item
+      *ngFor="let item of items$ | async"
+      [item]="item"
+    ></app-cart-item>
+  </div>
+  <span class="total">Total: {{ total$ | async }}₪</span>

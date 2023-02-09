@@ -1,0 +1,42 @@
+.user-carts {
+  margin: 1rem 0;
+  max-height: 80%;
+  overflow-y: scroll;
+}
+.single-user-cart {
+  border: 1px rgb(207, 223, 238) solid;
+  border-radius: 5px;
+  margin: 0.5rem;
+  padding: 0.4rem 1rem;
+  color: rgb(16, 16, 115);
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+}
+.single-user-cart h6 {
+  color: rgb(187, 38, 38);
+}
+.single-user-cart:hover {
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+.active {
+  border: 3px rgb(207, 223, 238) solid;
+  background-color: rgb(222, 233, 245);
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 15px;
+}
+.open-carts h6 {
+  color: green;
+}
+
+@media only screen and (max-width: 950px) {
+  h3 {
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+  }
+  .btn,
+  span,
+  h6,
+  div {
+    font-size: 0.9rem;
+  }
+}

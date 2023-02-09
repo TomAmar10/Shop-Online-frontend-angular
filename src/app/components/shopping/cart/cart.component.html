@@ -1,0 +1,24 @@
+<div class="cart-container" [class]="(isCartOpen$ | async) ? 'open' : 'close'">
+  <app-admin-cart class="cart" *ngIf="isAdmin; else user"></app-admin-cart>
+  <ng-template #user>
+    <div class="cart">
+      <div class="cart-items-container">
+        <div class="cart-items">
+          <app-cart-item
+            *ngFor="let item of cartItems$ | async"
+            [item]="item"
+          ></app-cart-item>
+        </div>
+        <span class="remove-all-btn" (click)="removeAll()">Remove All</span>
+      </div>
+      <div class="cart-bottom">
+        <span>Total: {{ total$ | async }}₪</span>
+        <button class="btn btn-success" (click)="order()">Order</button>
+      </div>
+    </div>
+  </ng-template>
+</div>
+<div
+  class="cart-bg-fixed"
+  [class]="(isCartOpen$ | async) ? 'open' : 'close'"
+></div>

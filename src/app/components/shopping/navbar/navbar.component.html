@@ -1,0 +1,39 @@
+<nav class="navbar-expand-lg navigation-container">
+  <div class="dropdown-container">
+    <a
+      class="nav-link drop-right-toggle"
+      (click)="toggleCart()"
+      [class]="(isCartOpen$ | async) ? 'open' : 'close'"
+    >
+      <a *ngIf="isAdmin$ | async; else user"><img src="{{ plusImg }}" />Add</a>
+      <ng-template #user
+        ><a><img src="{{ cartImg }}" />My Cart</a></ng-template
+      >
+    </a>
+  </div>
+  <div class="vr"></div>
+  <div class="select-container">
+    <select (change)="navigate($event)">
+      <option>All</option>
+      <option *ngFor="let category of categories$ | async">
+        {{ category.name }}
+      </option>
+    </select>
+  </div>
+  <div class="navigation-bar">
+    <div class="category" routerLinkActive="active" routerLink="../all">
+      <span class="category-name">All</span>
+    </div>
+    <ng-container *ngFor="let category of categories$ | async">
+      <div class="vr"></div>
+      <div
+        class="category"
+        routerLinkActive="active"
+        [routerLink]="['..', category.name]"
+      >
+        <span class="category-name">{{ category.name }}</span>
+      </div>
+    </ng-container>
+  </div>
+</nav>
+<div class="navbar-bg-fixed"></div>

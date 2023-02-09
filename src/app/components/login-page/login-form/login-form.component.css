@@ -1,0 +1,47 @@
+form,
+.carts-area {
+  width: 100%;
+  height: 100%;
+}
+h3 {
+  margin-bottom: 1.5rem;
+}
+.register-link {
+  font-size: 1rem;
+  text-decoration: none;
+  cursor: pointer;
+  margin-right: 1rem;
+  color: rgb(27, 27, 133);
+}
+.register-link:hover {
+  text-decoration: underline;
+}
+
+.new-user-msg {
+  margin-bottom: 2rem;
+  font-size: 1.1rem;
+}
+.error {
+  color: red;
+}
+input.ng-invalid.ng-touched {
+  border-color: red;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+input.ng-invalid.ng-touched:focus {
+  box-shadow: 0 0 0 0.2rem rgb(255, 0, 0, 0.25);
+}
+.form-group > div {
+  display: flex;
+  justify-content: space-between;
+}
+
+@media only screen and (max-width: 950px) {
+  h3{
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+  }
+  label, input, .register-link, .error, .btn, span, h6, div{
+    font-size: 0.9rem;
+  }
+}

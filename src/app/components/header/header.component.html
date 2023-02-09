@@ -1,0 +1,43 @@
+<div class="header-container">
+  <div class="header">
+    <app-logo></app-logo>
+    <div class="search-container">
+      <div class="dropdown">
+        <input
+          type="text"
+          class="search-input"
+          placeholder="search..."
+          #txt
+          [(ngModel)]="userSearch"
+          (input)="change(txt.value)"
+        />
+        <div
+          class="dropdown-content"
+          [ngClass]="(items$ | async) && isFocus && userSearch && 'show'"
+        >
+          <a *ngFor="let item of items$ | async" (click)="choose(item)">{{
+            item
+          }}</a>
+        </div>
+      </div>
+      <button class="btn btn-primary search-btn" (click)="search()">
+        Search
+      </button>
+    </div>
+    <div class="contact-area">
+      <a
+        class="header-menu"
+        routerLink="admin"
+        *ngIf="isAdmin$ | async; else other"
+        >Admin</a
+      >
+      <ng-template #other>
+        <a class="header-menu" (click)="contact()">Contact</a>
+      </ng-template>
+      <div class="vr" *ngIf="user"></div>
+      <a class="header-menu" (click)="logout()" *ngIf="user">Logout</a>
+    </div>
+  </div>
+</div>
+
+<div class="header-bg-fixed"></div>

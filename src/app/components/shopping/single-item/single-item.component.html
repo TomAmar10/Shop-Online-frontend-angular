@@ -1,0 +1,13 @@
+<div class="single-item">
+  <div class="img-container">
+    <img src="{{ item.image }}" alt="{{ item.name }}" />
+  </div>
+  <hr />
+  <h5>{{ item.name }}</h5>
+  <div class="single-item-bottom">
+    <span>{{ item.price }}₪</span>
+    <button class="btn btn-danger" (click)="itemClick()">
+      {{ isAdmin ? "Edit" : "Add" }}
+    </button>
+  </div>
+</div>

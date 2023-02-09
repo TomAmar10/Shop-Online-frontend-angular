@@ -1,0 +1,49 @@
+<h3>Hello {{ user.first_name }} !</h3>
+<div class="user-carts" *ngIf="(carts$ | async).length; else empty">
+  <h6>Choose cart</h6>
+  <div *ngIf="closedCarts.length">
+    <span>Use previous order</span>
+    <div
+      *ngFor="let cart of closedCarts"
+      class="single-user-cart closed"
+      [ngClass]="cart._id === clicked && 'active'"
+      (click)="choose(cart._id)"
+    >
+      <h6>{{ cart.items.length }} Items</h6>
+      <span>{{ cart.created | date }}</span>
+    </div>
+    <hr />
+  </div>
+  <div *ngIf="openCarts.length">
+    <span>Open Carts</span>
+    <div
+      *ngFor="let cart of openCarts"
+      class="single-user-cart open-carts"
+      [ngClass]="cart._id === clicked && 'active'"
+      (click)="choose(cart._id)"
+    >
+      <h6>{{ cart.items.length }} Items</h6>
+      <span>{{ cart.created | date }}</span>
+    </div>
+    <hr />
+  </div>
+  <div
+    class="single-user-cart"
+    [ngClass]="!clicked && 'active'"
+    (click)="choose('')"
+  >
+    New Cart
+  </div>
+</div>
+<ng-template #empty>
+  <div class="new-user-msg">
+    <span
+      >Enjoy your first online shopping,<br />
+      with the best service there is! <br />
+      Click below to start now</span
+    >
+  </div>
+</ng-template>
+<button type="button" class="btn btn-success" (click)="goShopping()">
+  {{ user.role === 1 ? "Go to products page" : "Start Shopping!" }}
+</button>

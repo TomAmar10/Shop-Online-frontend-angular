@@ -1,0 +1,157 @@
+<div class="order-page">
+  <app-order-cart class="cart box"></app-order-cart>
+
+  <div class="order box">
+    <h4>Order</h4>
+    <form
+      *ngIf="isFirstStep; else second"
+      class="step"
+      [formGroup]="order_details"
+    >
+      <div>
+        <h6>1. Shipping Details</h6>
+        <div class="form-group mb-3 dropdown">
+          <div class="label-container">
+            <label for="city" class="form-label">City</label>
+            <span class="err" *ngIf="checkValid1('city')">
+              City is not valid</span
+            >
+          </div>
+          <input
+            (click)="checkClick()"
+            placeholder="double click to use your address"
+            #userCity
+            (input)="searchCity(userCity.value)"
+            type="text"
+            id="city"
+            class="form-control"
+            formControlName="city"
+          />
+          <div
+            class="dropdown-content"
+            [ngClass]="(cities$ | async) && isCityDirty && 'show'"
+          >
+            <a
+              *ngFor="let city of cities$ | async"
+              (click)="chooseCity(city)"
+              >{{ city }}</a
+            >
+          </div>
+        </div>
+        <div class="form-group mb-3 dropdown">
+          <div class="label-container">
+            <label for="street" class="form-label">Street</label>
+            <span class="err" *ngIf="checkValid1('street')">
+              Street is not valid</span
+            >
+          </div>
+          <input
+            (click)="checkClick()"
+            placeholder="double click to use your address"
+            #userStreet
+            (input)="searchStreet(userStreet.value)"
+            type="text"
+            id="street"
+            class="form-control"
+            formControlName="street"
+          />
+          <div
+            class="dropdown-content"
+            [ngClass]="(streets$ | async) && isStreetDirty && 'show'"
+          >
+            <a
+              *ngFor="let street of streets$ | async"
+              (click)="chooseStreet(street)"
+              >{{ street }}</a
+            >
+          </div>
+        </div>
+        <div class="form-group mb-3">
+          <div class="label-container">
+            <label for="delivery" class="form-label">Shipping Date:</label>
+            <span class="err" *ngIf="checkValid1('delivery')">
+              {{
+                order_details.get("delivery").errors["unAvailable"]
+                  ? "Date is not available"
+                  : "Date is not valid"
+              }}
+            </span>
+          </div>
+          <input
+            type="date"
+            id="delivery"
+            class="form-control"
+            formControlName="delivery"
+          />
+        </div>
+      </div>
+      <div class="next-step-btn">
+        <button type="button" class="btn btn-primary" (click)="goToPayment()">
+          Payment
+        </button>
+      </div>
+    </form>
+    <!-- Second form ----------- -->
+    <ng-template #second>
+      <img
+        src="../../../assets/images/back.png"
+        alt="back"
+        class="back-arrow"
+        (click)="isFirstStep = true"
+      />
+      <form class="step" [formGroup]="order_payment">
+        <div>
+          <h6>2. Shipping Payment</h6>
+          <div class="form-group mb-3">
+            <div class="label-container">
+              <label for="credit" class="form-label">Credit Card</label>
+              <span class="err" *ngIf="checkValid2('credit')">
+                Credit card is not valid</span
+              >
+            </div>
+            <input
+              type="number"
+              id="credit"
+              class="form-control"
+              formControlName="credit"
+            />
+          </div>
+          <div class="form-group mb-3">
+            <div class="label-container">
+              <label for="expiration" class="form-label">Expiration Date</label>
+              <span class="err" *ngIf="checkValid2('expiration')">
+                Expiry date is not valid</span
+              >
+            </div>
+            <input
+              type="date"
+              id="expiration"
+              class="form-control"
+              formControlName="expiration"
+            />
+          </div>
+          <div class="form-group mb-3">
+            <div class="label-container">
+              <label for="digits" class="form-label">3 Digits</label>
+              <span class="err" *ngIf="checkValid2('digits')">
+                3 digits required</span
+              >
+            </div>
+            <input
+              type="number"
+              id="digits"
+              class="form-control"
+              formControlName="digits"
+            />
+          </div>
+        </div>
+        <div class="submit-btn">
+          <button type="button" class="btn btn-success" (click)="order()">
+            Order
+          </button>
+        </div>
+      </form>
+    </ng-template>
+  </div>
+  <app-order-popup *ngIf="isComplete$ | async"></app-order-popup>
+</div>

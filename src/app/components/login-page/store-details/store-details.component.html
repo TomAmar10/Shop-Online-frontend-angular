@@ -1,0 +1,18 @@
+<div class="login-page-card details">
+  <ng-image-slider
+    [images]="imageObject"
+    #nav
+    [animationSpeed]="speed"
+    [imageSize]="size"
+    [autoSlide]="4"
+    [infinite]="true"
+  >
+  </ng-image-slider>
+  <div>
+    <p>Available products in our store : {{ (items$ | async).length }}</p>
+    <p>Orders submitted : {{ ordersCount }}</p>
+  </div>
+  <div class="notification">
+    <h3>{{ user ? message : "Hello Guest !" }}</h3>
+  </div>
+</div>

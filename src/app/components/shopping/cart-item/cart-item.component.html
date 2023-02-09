@@ -1,0 +1,13 @@
+<div class="cart-item d-flex justify-content-between">
+  <div>
+    <div class="cart-item-top">
+      <p>{{ item.name }}</p>
+      <button class="remove" (click)="remove()" *ngIf="!isOrder">x</button>
+    </div>
+    <div class="d-flex justify-content-between">
+      <span>{{ item.amount }} pcs</span>
+      <span class="price">{{ item.amount * item.price }}₪</span>
+    </div>
+  </div>
+  <img src="{{ item.image }}" alt="prod" />
+</div>
