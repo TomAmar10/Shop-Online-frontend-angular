@@ -1,27 +1,31 @@
-# Frontend
+# Shop-Online - Shopping app by Tom Amar
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.0.4.
+This application is a shopping online application, <br>
+which allows the user buying groceries without leaving home. <br>
+The application includes an API server built with Node.js, Express, and TypeScript, <br>
+a client side built with Angular, <br>
+and a MongoDB database. <br>
+Here you can see the frontend of the app - the client side.
 
-## Development server
+## How To
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+As admin, you can add / edit products and see information about users/carts/orders, <br>
+logging in with - email: 'admin@gmail.com', password: 'admin123'. <br>
+As user, you can create your own cart to place your products in. <br>
+You can create a new cart when u log in, or you can an open cart, or items from previous order. <br>
 
-## Code scaffolding
+## Installation
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+To run the project, All you got to do is clone this repository, <br>
+clone the repository of the backend, which built using nodejs TS, <br>
+and use your mongoDB. <br>
 
-## Build
+### Shop-Online link
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+https://shop-online-ta7.netlify.app
 
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+<div>
+<img src="https://user-images.githubusercontent.com/94956589/218271055-07cc5b6f-ce78-4723-85a5-52a1812a7b09.png" alt="" width="300" height="250">
+<img src="https://user-images.githubusercontent.com/94956589/218271071-063c8014-e7f4-4358-b339-c8c9e02edfab.png" alt="" width="300" height="250">
+<img src="https://user-images.githubusercontent.com/94956589/218271082-0cf0dd33-d8ca-4ad2-be64-ffd9c9ae6122.png" alt="" width="250" height="300">
+</div>
