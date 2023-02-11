@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
+import { ItemsService } from 'src/app/services/items.service';
 import { VisibilityService } from 'src/app/services/visibilities.service';
 
 @Component({
@@ -9,9 +10,14 @@ import { VisibilityService } from 'src/app/services/visibilities.service';
 })
 export class ShoppingComponent implements OnInit {
   isPopupOpen$: Observable<boolean>;
-  constructor(private visibleService: VisibilityService) {}
+  isLoading$: Observable<boolean>;
+  constructor(
+    private visibleService: VisibilityService,
+    private itemService: ItemsService
+  ) {}
 
   ngOnInit(): void {
+    this.isLoading$ = this.itemService.isLoading$;
     this.isPopupOpen$ = this.visibleService.isPopupOpen$;
   }
 }

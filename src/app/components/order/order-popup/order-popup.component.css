@@ -25,3 +25,9 @@ span{
 span:hover{
   text-decoration: underline;
 }
+
+.loading{
+  width: 100%;
+  text-align: center;
+  margin-top: 3rem;
+}

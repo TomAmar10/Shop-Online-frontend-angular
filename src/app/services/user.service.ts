@@ -61,7 +61,10 @@ export class UserService {
     return this.user;
   }
 
-  checkExistingUser(id: number) {
-    return this.http.get<User>(`${env.userUrl}/single/${id}`);
+  checkUserId(id: string) {
+    return this.http.get<User>(`${env.userUrl}/check-user-id/${id}`);
+  }
+  checkUserEmail(email: string) {
+    return this.http.get<User>(`${env.userUrl}/check-user-email/${email}`);
   }
 }

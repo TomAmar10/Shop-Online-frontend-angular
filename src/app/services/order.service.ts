@@ -64,12 +64,10 @@ export class OrderService {
   }
 
   order(order: any) {
+    this.isSucceededSubject.next(true);
     this.http.post<Order>(`${env.orderUrl}/all/add`, order).subscribe(
-      (res) => {
-        this.isSucceededSubject.next(true);
-        this.orderSubject.next(res);
-      },
-      (error) => console.log(error)
+      (res) => this.orderSubject.next(res),
+      (error) => this.isSucceededSubject.next(false)
     );
     this.isCompleteSubject.next(true);
   }

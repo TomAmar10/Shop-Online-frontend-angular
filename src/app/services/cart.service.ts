@@ -60,7 +60,8 @@ export class CartService {
   }
 
   getCurrCart() {
-    return this.currCartSubject.value;
+    const value = this.currCartSubject.value;
+    return value;
   }
 
   getTotal() {
@@ -112,6 +113,12 @@ export class CartService {
   clearCarts() {
     this.allUserCartsSubject.next([]);
     this.currCartSubject.next(null);
+    localStorage.removeItem('cart');
+  }
+
+  setEmptyCart() {
+    this.currCartSubject.next(null);
+    localStorage.removeItem('cart');
   }
 
   chooseCartById(id: string) {

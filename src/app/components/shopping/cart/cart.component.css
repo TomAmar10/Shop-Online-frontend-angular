@@ -79,6 +79,9 @@ button {
 }
 
 @media only screen and (max-width: 650px) {
+  .cart-container {
+    height: 72vh;
+  }
   .cart-bg-fixed {
     width: 18rem;
   }

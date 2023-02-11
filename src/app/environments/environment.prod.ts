@@ -1,4 +1,4 @@
-const url = 'https://backend-shop-online.onrender.com/api';
+const url = 'http://localhost:3200/api';
 export const environment = {
   production: true,
   url,

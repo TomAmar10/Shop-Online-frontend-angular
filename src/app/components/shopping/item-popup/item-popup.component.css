@@ -4,7 +4,7 @@
   height: 100%;
   top: 0;
   background-color: rgb(0, 0, 0, 0.3);
-  z-index: 1;
+  z-index: 4;
 }
 .modal-popup {
   color: rgb(27, 27, 133);
@@ -19,7 +19,7 @@
   justify-content: space-around;
   border-radius: 5px;
   background-color: white;
-  z-index: 2;
+  z-index: 5;
   padding: 1rem;
 }
 .modal-left-side {
@@ -69,7 +69,8 @@ input {
 }
 @media only screen and (max-width: 650px) {
   .modal-popup{
-    height: 12rem;
+    min-height: 12rem;
+    max-height: 35rem;
   }
   img{
     width: 8rem;

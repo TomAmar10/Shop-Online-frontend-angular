@@ -24,7 +24,7 @@ export class NavbarComponent implements OnInit {
     private userService: UserService,
     private itemService: ItemsService,
     private categoryService: CategoriesService,
-    private route: ActivatedRoute,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit() {
@@ -32,9 +32,9 @@ export class NavbarComponent implements OnInit {
     this.isAdmin$ = this.userService.isAdmin$;
     this.categories$ = this.categoryService.categories$;
 
-    this.route.params.subscribe((p) =>
-      this.itemService.setByCategory(p['category'])
-    );
+    this.route.params.subscribe((p) => {
+      this.itemService.setByCategory(p['category']);
+    });
   }
 
   toggleCart() {

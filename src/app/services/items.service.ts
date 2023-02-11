@@ -11,16 +11,18 @@ export class ItemsService implements OnInit {
   private itemsSubject = new BehaviorSubject<Item[]>([]);
   private allItemsSubject = new BehaviorSubject<Item[]>([]);
   private itemToEditSubject = new BehaviorSubject<Item | null>(null);
-  private isSearchingSubject = new BehaviorSubject<boolean>(false);
+  private isLoadingSubject = new BehaviorSubject<boolean>(false);
 
   constructor(private http: HttpClient) {}
 
   ngOnInit(): void {}
 
   setAll() {
+    this.isLoadingSubject.next(true);
     this.http.get<Item[]>(`${env.itemUrl}/all`).subscribe((res) => {
       this.itemsSubject.next(res);
       this.allItemsSubject.next(res);
+      this.isLoadingSubject.next(false);
     });
   }
 
@@ -33,6 +35,10 @@ export class ItemsService implements OnInit {
 
   get itemToEdit$() {
     return this.itemToEditSubject.asObservable();
+  }
+
+  get isLoading$() {
+    return this.isLoadingSubject.asObservable();
   }
 
   addItem(item: Item) {
@@ -75,6 +81,5 @@ export class ItemsService implements OnInit {
     );
     if (!searched) return;
     this.itemsSubject.next(searched);
-    this.isSearchingSubject.next(true);
   }
 }

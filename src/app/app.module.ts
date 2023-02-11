@@ -28,6 +28,7 @@ import { AdminPageComponent } from './components/admin-page/admin-page.component
 import { OrderCartComponent } from './components/order/order-cart/order-cart.component';
 import { AdminCartComponent } from './components/shopping/cart/admin-cart/admin-cart.component';
 import { CartsListComponent } from './components/login-page/carts-list/carts-list.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -62,6 +63,7 @@ import { CartsListComponent } from './components/login-page/carts-list/carts-lis
     ReactiveFormsModule,
     HttpClientModule,
     FormsModule,
+    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

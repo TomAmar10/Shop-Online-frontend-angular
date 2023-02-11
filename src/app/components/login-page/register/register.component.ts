@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { BehaviorSubject, combineLatest, debounceTime, map } from 'rxjs';
-import { CartService } from 'src/app/services/cart.service';
 import { OrderService } from 'src/app/services/order.service';
 import { UserService } from 'src/app/services/user.service';
 
@@ -20,17 +19,14 @@ export class RegisterComponent implements OnInit {
   cities: string[] = [];
   streets: string[] = [];
   error = '';
-  idError = '';
+  authError = '';
 
   register1: FormGroup = new FormGroup({
     id_number: new FormControl('', [
       Validators.required,
       Validators.min(10000000),
     ]),
-    email: new FormControl('', [
-      Validators.required,
-      Validators.email,
-    ]),
+    email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [
       Validators.required,
       Validators.minLength(6),
@@ -64,7 +60,7 @@ export class RegisterComponent implements OnInit {
   constructor(
     private router: Router,
     private userService: UserService,
-    private orderService: OrderService,
+    private orderService: OrderService
   ) {}
 
   ngOnInit(): void {
@@ -79,7 +75,7 @@ export class RegisterComponent implements OnInit {
       )
       .subscribe((res) => (this.cities = res));
 
-    this.register1.valueChanges.subscribe(() => (this.idError = ''));
+    this.register1.valueChanges.subscribe(() => (this.authError = ''));
     this.register2.valueChanges.subscribe(() => (this.error = ''));
   }
 
@@ -103,12 +99,15 @@ export class RegisterComponent implements OnInit {
       this.register1.markAllAsTouched();
       return;
     }
-    this.userService
-      .checkExistingUser(this.register1.get('id_number').value)
-      .subscribe(
-        (res) => (this.idError = 'This ID is already in use'),
-        (err) => (this.isFirst = false)
-      );
+    const form = this.register1.value;
+    this.userService.checkUserId(form.id_number).subscribe(
+      (res) =>
+        this.userService.checkUserEmail(form.email).subscribe(
+          (res) => (this.isFirst = false),
+          (err) => (this.authError = err.error.msg)
+        ),
+      (err) => (this.authError = err.error.msg)
+    );
   }
 
   passwordMatch(control: FormControl) {

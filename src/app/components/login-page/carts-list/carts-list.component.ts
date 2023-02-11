@@ -18,6 +18,7 @@ export class CartsListComponent implements OnInit {
   openCarts: Cart[] = [];
   clicked = '';
   user: User;
+  isLoading = false;
 
   constructor(
     private cartService: CartService,
@@ -27,9 +28,11 @@ export class CartsListComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.isLoading = true;
     this.userService.user$.subscribe((res) => (this.user = res));
     this.carts$ = this.cartService.userCarts$;
     this.cartService.isOrderedCarts$.subscribe((carts) => {
+      this.isLoading = false;
       if (!carts) return;
       this.openCarts = carts.filter((c) => !c.isOrdered);
       this.closedCarts = carts.filter((c) => c.isOrdered);

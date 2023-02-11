@@ -27,6 +27,15 @@
 .open-carts h6 {
   color: green;
 }
+.new-user-msg {
+  min-height: 8rem;
+}
+
+.loading {
+  width: 100%;
+  text-align: center;
+  margin-top: 3rem;
+}
 
 @media only screen and (max-width: 950px) {
   h3 {

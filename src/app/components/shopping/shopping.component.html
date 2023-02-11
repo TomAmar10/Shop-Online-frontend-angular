@@ -3,6 +3,11 @@
   <app-navbar></app-navbar>
   <div class="main-area">
     <app-cart></app-cart>
-    <app-items></app-items>
+    <div class="loading" *ngIf="isLoading$ | async; else notLoading">
+      <div class="spinner-border text-primary" role="status"></div>
+    </div>
+    <ng-template #notLoading>
+      <app-items></app-items>
+    </ng-template>
   </div>
 </div>
