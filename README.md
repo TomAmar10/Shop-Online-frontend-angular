@@ -25,7 +25,7 @@ and use your mongoDB. <br>
 https://shop-online-ta7.netlify.app
 
 <div>
-<img src="https://user-images.githubusercontent.com/94956589/218271055-07cc5b6f-ce78-4723-85a5-52a1812a7b09.png" alt="" width="300" height="250">
-<img src="https://user-images.githubusercontent.com/94956589/218271071-063c8014-e7f4-4358-b339-c8c9e02edfab.png" alt="" width="300" height="250">
-<img src="https://user-images.githubusercontent.com/94956589/218271082-0cf0dd33-d8ca-4ad2-be64-ffd9c9ae6122.png" alt="" width="250" height="300">
+<img src="https://user-images.githubusercontent.com/94956589/218271055-07cc5b6f-ce78-4723-85a5-52a1812a7b09.png" alt="" width="300" height="200">
+<img src="https://user-images.githubusercontent.com/94956589/218271071-063c8014-e7f4-4358-b339-c8c9e02edfab.png" alt="" width="300" height="200">
+<img src="https://user-images.githubusercontent.com/94956589/218271082-0cf0dd33-d8ca-4ad2-be64-ffd9c9ae6122.png" alt="" width="200" height="300">
 </div>
