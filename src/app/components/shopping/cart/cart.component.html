@@ -9,7 +9,7 @@
             [item]="item"
           ></app-cart-item>
         </div>
-        <span class="remove-all-btn" (click)="removeAll()">Remove All</span>
+        <a class="remove-all-btn" (click)="removeAll()">Remove All</a>
       </div>
       <div class="cart-bottom">
         <span>Total: {{ total$ | async }}₪</span>

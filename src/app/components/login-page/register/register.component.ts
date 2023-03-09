@@ -24,7 +24,7 @@ export class RegisterComponent implements OnInit {
   register1: FormGroup = new FormGroup({
     id_number: new FormControl('', [
       Validators.required,
-      Validators.min(10000000),
+      Validators.min(1000000),
     ]),
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [

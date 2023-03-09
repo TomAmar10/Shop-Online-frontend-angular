@@ -1,14 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { Form, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import {
   BehaviorSubject,
-  catchError,
   combineLatest,
   debounceTime,
   map,
   Observable,
 } from 'rxjs';
-import { Item } from 'src/app/models/item.model';
 import { User } from 'src/app/models/user.model';
 import { CartService } from 'src/app/services/cart.service';
 import { OrderService } from 'src/app/services/order.service';
@@ -51,8 +49,8 @@ export class OrderComponent implements OnInit {
   order_payment: FormGroup = new FormGroup({
     credit: new FormControl('', [
       Validators.required,
-      Validators.min(1000000000000000),
-      Validators.max(10000000000000000),
+      Validators.min(9999999),
+      Validators.max(9999999999999999),
     ]),
     expiration: new FormControl('', [
       Validators.required,
@@ -72,9 +70,9 @@ export class OrderComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.orderService.getOrderDates().subscribe(
-      (res) => (this.orderDates = res.map((o) => new Date(o)))
-    );
+    this.orderService
+      .getOrderDates()
+      .subscribe((res) => (this.orderDates = res.map((o) => new Date(o))));
     this.user = this.userService.getUserDetails();
     this.cities$ = combineLatest([
       this.citySearchSubject.pipe(debounceTime(300)),

@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, filter, map } from 'rxjs';
+import { BehaviorSubject, map } from 'rxjs';
 import { environment as env } from '../environments/environment';
 import { Order } from '../models/order.model';
 
@@ -8,10 +8,9 @@ import { Order } from '../models/order.model';
   providedIn: 'root',
 })
 export class OrderService {
-  citiesSubject = new BehaviorSubject<string[]>([]);
-  isCompleteSubject = new BehaviorSubject<boolean>(false);
-  isSucceededSubject = new BehaviorSubject<boolean>(false);
-  orderSubject = new BehaviorSubject<Order | null>(null);
+  private isCompleteSubject = new BehaviorSubject<boolean>(false);
+  private isSucceededSubject = new BehaviorSubject<boolean>(false);
+  private orderSubject = new BehaviorSubject<Order | null>(null);
 
   constructor(private http: HttpClient) {}
 
